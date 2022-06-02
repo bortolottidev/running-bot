@@ -1,0 +1,12 @@
+name: Scheduled Job Actions Check 
+
+on:
+  schedule:
+    - cron: '* * * * *'
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run the check on deployed server
+        run: echo "Hello Scheduled"

@@ -12,7 +12,8 @@ const healthFactorEmoji = (healthFactor) => {
 export const lendingPayloadCreate = (
   currentDate,
   healthFactorGeist,
-  healthFactoryAave
+  healthFactoryAvaxAave,
+  healthFactoryMaticAave
 ) => ({
   message: "Daily lending update!",
   blocks: [
@@ -30,7 +31,7 @@ export const lendingPayloadCreate = (
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*Geist*\n Health factor: ${healthFactorGeist} \n Status: ${healthFactorEmoji(
+        text: `*Geist (FANTOM)*\n Health factor: ${healthFactorGeist} \n Status: ${healthFactorEmoji(
           healthFactorGeist
         )}`,
       },
@@ -45,8 +46,23 @@ export const lendingPayloadCreate = (
       type: "section",
       text: {
         type: "mrkdwn",
-        text: `*Aave* \n Health factor: ${healthFactoryAave} \n Status: ${healthFactorEmoji(
-          healthFactoryAave
+        text: `*Aave (AVAX)* \n Health factor: ${healthFactoryAvaxAave} \n Status: ${healthFactorEmoji(
+          healthFactoryAvaxAave
+        )}`,
+      },
+      accessory: {
+        type: "image",
+        image_url:
+          "https://external-content.duckduckgo.com/iu/?u=https://www.blocktrainer.de/wp-content/uploads/logos/aave.png&f=1&nofb=1",
+        alt_text: "alt text for image",
+      },
+    },
+    {
+      type: "section",
+      text: {
+        type: "mrkdwn",
+        text: `*Aave (POLYGON)* \n Health factor: ${healthFactoryMaticAave} \n Status: ${healthFactorEmoji(
+          healthFactoryMaticAave
         )}`,
       },
       accessory: {

@@ -10,12 +10,25 @@ const slackLenderAlert = new SlackBolt.App({
   appToken: process.env.SLACK_NODE_APP_TOKEN,
 });
 
-export const postMessage = (geistHealthFactor, aaveHealthFactor) =>
+const formatHealthFactor = (healthFactor) => {
+  if (healthFactor > 10) {
+    return "♾️";
+  }
+
+  return Number(healthFactor).toFixed(2);
+};
+
+export const postMessage = (
+  geistFantomHealthFactor,
+  aaveAvaxHealthFactor,
+  aaveMaticHealthFactor
+) =>
   slackLenderAlert.client.chat.postMessage({
     ...lendingPayloadCreate(
       new Date().toLocaleString("it-IT", { timeZone: "Europe/Rome" }),
-      Number(geistHealthFactor).toFixed(2),
-      Number(aaveHealthFactor).toFixed(2)
+      formatHealthFactor(geistFantomHealthFactor),
+      formatHealthFactor(aaveAvaxHealthFactor),
+      formatHealthFactor(aaveMaticHealthFactor)
     ),
     channel: "generale",
   });
