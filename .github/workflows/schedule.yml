@@ -1,6 +1,9 @@
 name: Scheduled Job Actions Check 
 
 on:
+  push:
+    branches:
+      - master 
   schedule:
     - cron: '* * * * *'
 
