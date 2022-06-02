@@ -5,11 +5,13 @@ on:
     branches:
       - master 
   schedule:
-    - cron: '* * * * *'
+    - cron: '*/5 * * * *'
 
 jobs:
   check:
     runs-on: ubuntu-latest
     steps:
-      - name: Run the check on deployed server
-        run: echo "Hello Scheduled"
+      - name: Print the current time 
+        run: echo "[`date +'%d/%m/%Y %T'`] Time to check the lending status!"
+      - name: Trigger the check through API call 
+        run: curl -X GET ${{ secrets.SERVER_URL }}

@@ -1,11 +1,11 @@
 import Fastify from "fastify";
 import {
-  formatFromWei,
-  getAaveAvaxData,
-  getAaveMaticData,
-  getGeistData,
+    formatFromWei,
+    getAaveAvaxData,
+    getAaveMaticData,
+    getGeistData
 } from "./contracts/blockchain-connect.js";
-import { postMessage } from "./slack.js";
+import {postMessage} from "./slack.js";
 
 const fastify = Fastify({
   logger: true,
