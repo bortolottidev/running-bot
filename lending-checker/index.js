@@ -38,9 +38,6 @@ export default async function handler(request, response) {
   console.debug("Posted data");
 
   return { status: "HEALTHyyy" };
-  /*return response.statius(200).json({
-    body: JSON.stringify({ msg: "HEALTHyyy" }),
-  });*/
 }
 
 fastify.get("/", handler);
