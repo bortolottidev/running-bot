@@ -6,6 +6,7 @@ on:
       - master 
   schedule:
     - cron: '30 18 * * *' # every day at 20:30 in UTC+2
+    # theoretically... but its very imprecise
 
 jobs:
   check:
