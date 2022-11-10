@@ -11,7 +11,7 @@ const fastify = Fastify({
   logger: true,
 });
 
-export default async function handler(request, response) {
+export default async function handler(){
   console.log("⚡️ The lend checker app is running!");
 
   const [myGeistData, myAaveAvaxData, myAaveMaticData] = await Promise.all([
