@@ -1,0 +1,34 @@
+{
+  "name": "pegged-token-monitor",
+  "version": "1.0.0",
+  "description": "A server where to insert the order and check your pegged tokens",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node --experimental-fetch index.js",
+    "dev": "nodemon --experimental-fetch index.js",
+    "test": "tap --test-env=TEST_ENV_FILE=.test.env"
+  },
+  "keywords": [
+    "server",
+    "fastify",
+    "pegged tokens"
+  ],
+  "author": "Daniele Bortolotti",
+  "license": "MIT",
+  "dependencies": {
+    "fastify": "^3.28.0",
+    "fastify-env": "^2.1.1",
+    "fastify-mongodb": "^4.1.1",
+    "fastify-plugin": "^3.0.1",
+    "fluent-json-schema": "^3.1.0",
+    "web3": "^1.7.3"
+  },
+  "engines": {
+    "node": ">= 16.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20",
+    "tap": "^16.0.1"
+  }
+}
