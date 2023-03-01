@@ -1,8 +1,6 @@
 import SlackBolt from "@slack/bolt";
 import { lendingPayloadCreate } from "./slack-msg-builder.js";
 
-console.log("🔌 Getting started with Node Slack SDK");
-
 const slackLenderAlert = new SlackBolt.App({
   token: process.env.SLACK_NODE_BOT_TOKEN,
   signingSecret: process.env.SLACK_NODE_SIGNING_SECRET,
@@ -18,12 +16,14 @@ const formatHealthFactor = (healthFactor) => {
   return Number(healthFactor).toFixed(2);
 };
 
-export const postMessage = (
+export const postMessage = async (
   geistFantomHealthFactor,
   aaveAvaxHealthFactor,
   aaveMaticHealthFactor
-) =>
-  slackLenderAlert.client.chat.postMessage({
+) => {
+  console.log("🔌 Connecting to Node Slack Bolt..");
+  await slackLenderAlert.start(process.env.PORT || 3000);
+  const msg = {
     ...lendingPayloadCreate(
       new Date().toLocaleString("it-IT", { timeZone: "Europe/Rome" }),
       formatHealthFactor(geistFantomHealthFactor),
@@ -31,9 +31,8 @@ export const postMessage = (
       formatHealthFactor(aaveMaticHealthFactor)
     ),
     channel: "generale",
-  });
+  }
+  await slackLenderAlert.client.chat.postMessage(msg);
+  await slackLenderAlert.stop();
+}
 
-// Start your app
-(async () => {
-  await slackLenderAlert.start(process.env.PORT || 3000);
-})();

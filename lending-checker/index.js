@@ -1,44 +1,9 @@
 import Fastify from "fastify";
-import {
-  formatFromWei,
-  getAaveAvaxData,
-  getAaveMaticData,
-  getGeistData,
-} from "./contracts/blockchain-connect.js";
-import { postMessage } from "./slack.js";
+import handler from './handle-request.js';
 
 const fastify = Fastify({
   logger: true,
 });
-
-export default async function handler(){
-  console.log("⚡️ The lend checker app is running!");
-
-  const [myGeistData, myAaveAvaxData, myAaveMaticData] = await Promise.all([
-    getGeistData(),
-    getAaveAvaxData(),
-    getAaveMaticData(),
-  ]);
-  console.debug("Retrieved data", {
-    myGeistData,
-    myAaveAvaxData,
-    myAaveMaticData,
-  });
-  const geistFantomHealthFactor = formatFromWei(myGeistData.healthFactor);
-  const aaveAvaxHealthFactor = formatFromWei(myAaveAvaxData.healthFactor);
-  const aaveMaticHealthFactor = formatFromWei(myAaveMaticData.healthFactor);
-
-  console.debug([myAaveMaticData.healthFactor]);
-
-  postMessage(
-    geistFantomHealthFactor,
-    aaveAvaxHealthFactor,
-    aaveMaticHealthFactor
-  );
-  console.debug("Posted data");
-
-  return { status: "HEALTHyyy" };
-}
 
 fastify.get("/", handler);
 

@@ -7,7 +7,8 @@
   "scripts": {
     "start": "node -r dotenv/config index.js",
     "dev": "nodemon -r dotenv/config index.js",
-    "deploy": "git push heroku master"
+    "dev:serverless": "vercel dev",
+    "deploy": "vercel deploy"
   },
   "keywords": [
     "lending",
@@ -23,6 +24,6 @@
     "web3": "^1.7.3"
   },
   "devDependencies": {
-    "vercel": "^24.2.4"
+    "vercel": "^28.16.10"
   }
 }

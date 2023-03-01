@@ -1,0 +1,16 @@
+{
+  "functions": {
+    "api/handler.js": {
+      "maxDuration": 5
+    }
+  },
+  "crons": [
+    {
+      "path": "/api/handler",
+      "schedule": "45 13 * * *"
+    }
+  ],
+  "rewrites": [
+    { "source": "/", "destination": "/api/handler" }
+  ]
+}
