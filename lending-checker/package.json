@@ -8,7 +8,8 @@
     "start": "node -r dotenv/config index.js",
     "dev": "nodemon -r dotenv/config index.js",
     "dev:serverless": "vercel dev",
-    "deploy": "vercel deploy"
+    "deploy": "vercel deploy",
+    "deploy:prod": "vercel deploy --prod"
   },
   "keywords": [
     "lending",
